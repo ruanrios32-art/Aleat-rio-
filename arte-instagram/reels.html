@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --plum-deep: #0d0713;
+    --plum: #2a1536;
+    --plum-glow: #4a2459;
+    --gold: #d9b45a;
+    --gold-light: #f4dc9a;
+    --cream: #f5ecdc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1080px; height: 1920px; overflow: hidden; background: var(--plum-deep); }
+  #stage {
+    position: relative; width: 1080px; height: 1920px; overflow: hidden;
+    background: radial-gradient(ellipse 85% 55% at 50% 45%, var(--plum-glow) 0%, var(--plum) 45%, var(--plum-deep) 100%);
+    font-family: 'Montserrat', sans-serif; color: var(--cream); text-align: center;
+  }
+  #dark { position: absolute; inset: 0; background: var(--plum-deep); }
+  #glow {
+    position: absolute; left: 50%; top: 50%; width: 1100px; height: 1100px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(244,220,154,.30) 0%, rgba(244,200,110,.08) 40%, transparent 68%);
+    transform: translate(-50%, -50%);
+  }
+  #flameWrap { position: absolute; left: 50%; top: 50%; }
+  #flame { filter: drop-shadow(0 0 60px rgba(244,200,110,.55)); display: block; }
+  .ember { position: absolute; border-radius: 50%; background: var(--gold-light); box-shadow: 0 0 12px 3px rgba(244,200,110,.7); }
+  .line {
+    position: absolute; left: 80px; right: 80px; top: 50%;
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500;
+    font-size: 104px; line-height: 1.1; transform: translateY(-50%);
+  }
+  .gold-text {
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 55%, #a8812e 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  #agora .small { font-size: 90px; color: var(--cream); display: block; margin-bottom: 20px; }
+  #agora .big { font-style: normal; font-weight: 700; font-size: 230px; letter-spacing: 22px; display: block; line-height: 1; }
+  #final { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
+  #final .eyebrow { position: absolute; left: 0; right: 0; top: 960px; font-size: 44px; letter-spacing: 7px; font-weight: 600; }
+  #final .agora { position: absolute; left: 0; right: 0; top: 1030px; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 190px; letter-spacing: 22px; line-height: 1; }
+  #final .breve { position: absolute; left: 0; right: 0; top: 1290px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 96px; }
+  #final .handle { position: absolute; left: 0; right: 0; top: 1460px; font-size: 36px; letter-spacing: 5px; color: rgba(245,236,220,.75); }
+  .divider { position: absolute; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 24px; }
+  .divider span { width: 150px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold)); }
+  .divider span:last-child { background: linear-gradient(90deg, var(--gold), transparent); }
+  .divider i { width: 14px; height: 14px; background: var(--gold); transform: rotate(45deg); }
+  #frame { position: absolute; inset: 50px; border: 2px solid rgba(217,180,90,.45); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="glow"></div>
+  <div id="embers"></div>
+  <div id="flameWrap">
+    <svg id="flame" width="200" height="300" viewBox="0 0 200 300">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff1c4"/><stop offset=".45" stop-color="#e9c46a"/><stop offset="1" stop-color="#a87a28"/>
+        </linearGradient>
+        <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f7dc95"/><stop offset="1" stop-color="#c89436"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#g2)" opacity=".9" d="M100 8 C 70 70, 18 110, 22 185 C 26 250, 70 292, 112 292 C 70 268, 52 222, 66 176 C 78 136, 112 108, 104 58 C 132 98, 150 128, 150 168 C 150 196, 140 214, 126 228 C 168 212, 184 176, 180 140 C 174 88, 128 56, 100 8 Z"/>
+      <path fill="url(#g1)" d="M104 92 C 92 132, 70 158, 76 204 C 81 244, 104 270, 126 274 C 104 252, 98 226, 106 198 C 112 176, 128 160, 124 130 C 140 158, 144 184, 136 212 C 160 192, 162 160, 150 134 C 138 112, 116 106, 104 92 Z"/>
+    </svg>
+  </div>
+
+  <div class="line" id="l1" style="color:var(--cream)">Existe um chamado…</div>
+  <div class="line" id="l2"><span class="gold-text">…sobre a sua vida.</span></div>
+  <div class="line" id="l3" style="color:var(--cream)">E ele não é<br>para depois.</div>
+  <div class="line" id="agora"><span class="small">É para</span><span class="big gold-text">AGORA</span></div>
+
+  <div id="final">
+    <div id="frame"></div>
+    <div class="eyebrow gold-text">MULHERES CHAMADAS PARA</div>
+    <div class="agora gold-text">AGORA</div>
+    <div class="divider" style="top:1245px"><span></span><i></i><span></span></div>
+    <div class="breve">Em breve</div>
+    <div class="handle">@chamadasparaagora</div>
+  </div>
+
+  <div id="dark"></div>
+</div>
+
+<script>
+  const DURATION = 15;
+  const $ = id => document.getElementById(id);
+  const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const ease = x => { x = clamp(x); return x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3) / 2; };
+  // 0→1 entre a e b
+  const ramp = (t, a, b) => ease((t - a) / (b - a));
+  // aparece em [inA,inB], some em [outA,outB]
+  const window_ = (t, inA, inB, outA, outB) => ramp(t, inA, inB) * (1 - ramp(t, outA, outB));
+
+  // brasas com posições fixas (gerador pseudoaleatório determinístico)
+  let seed = 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const embers = [];
+  for (let i = 0; i < 46; i++) {
+    const el = document.createElement('div');
+    el.className = 'ember';
+    const size = 3 + rnd() * 7;
+    el.style.width = el.style.height = size + 'px';
+    $('embers').appendChild(el);
+    embers.push({ el, x: 540 + (rnd() - .5) * 900, speed: 60 + rnd() * 140, phase: rnd() * 2000, sway: 10 + rnd() * 40, f: .5 + rnd() * 1.5 });
+  }
+
+  function render(t) {
+    // abertura no escuro
+    $('dark').style.opacity = 1 - ramp(t, 0, 1.6);
+
+    // chama: nasce pequena, cresce, e no final sobe para o topo
+    const grow = ramp(t, .2, 2.4);
+    const flick = 1 + Math.sin(t * 9) * .02 + Math.sin(t * 13.7) * .015;
+    const skew = Math.sin(t * 6.3) * 1.8;
+    // durante as frases a chama fica no alto; no fim, centraliza acima do título
+    const phraseUp = ramp(t, 2.4, 3.1) * (1 - ramp(t, 9.6, 10.2));
+    const finalPos = ramp(t, 12.4, 13.2);
+    let y = 960 - phraseUp * 520;               // 960 = centro, 440 = alto
+    y = y * (1 - finalPos) + 600 * finalPos;
+    let scale = (.15 + grow * 1.65) * flick;
+    scale = scale * (1 - phraseUp * .45);
+    // no "AGORA" a chama explode em luz atrás do texto
+    const burst = window_(t, 10.0, 10.6, 12.0, 12.5);
+    scale *= 1 + burst * .35;
+    const fw = $('flameWrap');
+    fw.style.transform = `translate(-50%, -50%) translate(0, ${y - 960}px) scale(${scale}) skewX(${skew}deg)`;
+    fw.style.opacity = clamp(grow * 1.5) * (1 - burst * .75);
+
+    const g = $('glow');
+    g.style.top = y + 'px';
+    g.style.opacity = clamp(grow) * (.75 + Math.sin(t * 5) * .08) + burst * .6;
+    g.style.transform = `translate(-50%, -50%) scale(${.6 + grow * .5 + burst * .6})`;
+
+    // brasas subindo
+    for (const e of embers) {
+      const life = ((t * e.speed + e.phase) % 2000);
+      const ey = 1960 - life;
+      const ex = e.x + Math.sin(t * e.f + e.phase) * e.sway;
+      e.el.style.transform = `translate(${ex}px, ${ey}px)`;
+      e.el.style.opacity = clamp(grow) * clamp(life / 300) * clamp((2000 - life) / 500) * .85;
+    }
+
+    // frases
+    const line = (id, a, b) => {
+      const o = window_(t, a, a + .7, b - .5, b);
+      const el = $(id);
+      el.style.opacity = o;
+      el.style.transform = `translateY(calc(-50% + ${(1 - ramp(t, a, a + .9)) * 40 + 120}px))`;
+      el.style.filter = `blur(${(1 - ramp(t, a, a + .7)) * 10}px)`;
+    };
+    line('l1', 2.6, 5.0);
+    line('l2', 5.0, 7.4);
+    line('l3', 7.4, 9.9);
+
+    const ag = $('agora');
+    const ao = window_(t, 10.1, 10.6, 12.0, 12.5);
+    ag.style.opacity = ao;
+    ag.style.transform = `translateY(-50%) scale(${1.25 - ramp(t, 10.1, 11.2) * .25})`;
+    ag.style.filter = `blur(${(1 - ramp(t, 10.1, 10.6)) * 14}px)`;
+
+    // tela final
+    const fo = ramp(t, 12.6, 13.4);
+    $('final').style.opacity = fo;
+    $('final').style.transform = `translateY(${(1 - fo) * 40}px)`;
+  }
+  window.render = render;
+  window.DURATION = DURATION;
+  render(0);
+</script>
+</body>
+</html>
