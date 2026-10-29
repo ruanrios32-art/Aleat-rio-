@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --plum-deep: #120a1a;
+    --plum: #2a1536;
+    --plum-glow: #4a2459;
+    --gold: #d9b45a;
+    --gold-light: #f4dc9a;
+    --cream: #f5ecdc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; }
+  .slide {
+    width: 1080px; height: 1350px; position: relative; overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 50% 42%, var(--plum-glow) 0%, var(--plum) 45%, var(--plum-deep) 100%);
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 110px;
+  }
+  .slide::before {
+    content: ""; position: absolute; inset: 44px;
+    border: 1.5px solid rgba(217,180,90,.45); pointer-events: none;
+  }
+  .slide::after {
+    content: ""; position: absolute; inset: 58px;
+    border: 1px solid rgba(217,180,90,.18); pointer-events: none;
+  }
+  .gold-text {
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 55%, #a8812e 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .serif { font-family: 'Cormorant Garamond', serif; }
+  .eyebrow {
+    font-size: 26px; letter-spacing: 10px; text-transform: uppercase;
+    color: var(--gold); font-weight: 500;
+  }
+  .divider {
+    display: flex; align-items: center; gap: 22px; margin: 44px 0;
+  }
+  .divider span { width: 120px; height: 1.5px; background: linear-gradient(90deg, transparent, var(--gold)); }
+  .divider span:last-child { background: linear-gradient(90deg, var(--gold), transparent); }
+  .divider i { width: 12px; height: 12px; background: var(--gold); transform: rotate(45deg); }
+  .handle {
+    position: absolute; bottom: 96px; left: 0; right: 0;
+    font-size: 24px; letter-spacing: 4px; color: rgba(245,236,220,.6);
+  }
+  .page {
+    position: absolute; top: 96px; right: 110px;
+    font-size: 22px; letter-spacing: 4px; color: rgba(217,180,90,.7);
+  }
+  .glow {
+    position: absolute; width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(244,220,154,.22) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .flame { filter: drop-shadow(0 0 40px rgba(244,200,110,.45)); }
+
+  /* Slide 1 */
+  .s1 h1 { font-size: 112px; line-height: 1.02; font-weight: 600; font-style: italic; }
+  .s1 h2 { font-size: 64px; font-weight: 500; margin-top: 10px; color: var(--cream); }
+  .s1 h2 b { font-weight: 700; letter-spacing: 6px; }
+
+  /* Slide 2 */
+  .s2 .title { font-size: 46px; letter-spacing: 6px; font-weight: 600; line-height: 1.25; }
+  .s2 .agora { font-size: 150px; letter-spacing: 18px; font-weight: 700; line-height: 1; margin-top: 8px; }
+  .s2 p { font-size: 34px; line-height: 1.6; color: rgba(245,236,220,.85); max-width: 760px; font-weight: 400; }
+
+  /* Slide 3 */
+  .s3 .lead { font-size: 60px; font-style: italic; font-weight: 500; line-height: 1.15; margin-bottom: 70px; }
+  .pillar { margin: 26px 0; }
+  .pillar .word { font-size: 84px; font-weight: 700; letter-spacing: 8px; line-height: 1; }
+  .pillar .desc { font-size: 28px; color: rgba(245,236,220,.75); margin-top: 14px; letter-spacing: 1px; }
+  .pillar + .pillar::before {
+    content: "✦"; display: block; color: var(--gold); font-size: 26px; margin: -6px 0 30px; opacity: .8;
+  }
+
+  /* Slide 4 */
+  .s4 h1 { font-size: 150px; font-style: italic; font-weight: 600; line-height: 1; }
+  .s4 .list { margin-top: 20px; display: flex; flex-direction: column; gap: 34px; }
+  .s4 .item {
+    font-size: 34px; letter-spacing: 8px; text-transform: uppercase; font-weight: 500;
+    padding: 26px 70px; border: 1.5px solid rgba(217,180,90,.55); color: var(--cream);
+  }
+  .s4 .note { margin-top: 60px; font-size: 32px; color: rgba(245,236,220,.8); font-style: italic; }
+
+  /* Slide 5 */
+  .s5 h1 { font-size: 96px; font-weight: 600; line-height: 1.05; }
+  .s5 .cta { margin-top: 10px; display: flex; flex-direction: column; gap: 30px; }
+  .s5 .row {
+    display: flex; align-items: center; gap: 28px; text-align: left;
+    font-size: 34px; color: var(--cream); line-height: 1.35;
+  }
+  .s5 .icon {
+    flex: none; width: 82px; height: 82px; border-radius: 50%;
+    border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center;
+  }
+  .s5 .at {
+    margin-top: 70px; font-size: 44px; letter-spacing: 3px; font-weight: 600;
+    padding: 22px 54px; border-radius: 60px;
+    background: linear-gradient(180deg, var(--gold-light), var(--gold));
+    color: var(--plum-deep);
+  }
+</style>
+</head>
+<body>
+
+<!-- Chama reutilizável -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff1c4"/>
+      <stop offset=".45" stop-color="#e9c46a"/>
+      <stop offset="1" stop-color="#a87a28"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7dc95"/>
+      <stop offset="1" stop-color="#c89436"/>
+    </linearGradient>
+    <symbol id="flame" viewBox="0 0 200 300">
+      <!-- língua externa -->
+      <path fill="url(#g2)" opacity=".9"
+        d="M100 8 C 70 70, 18 110, 22 185 C 26 250, 70 292, 112 292 C 70 268, 52 222, 66 176 C 78 136, 112 108, 104 58 C 132 98, 150 128, 150 168 C 150 196, 140 214, 126 228 C 168 212, 184 176, 180 140 C 174 88, 128 56, 100 8 Z"/>
+      <!-- língua interna -->
+      <path fill="url(#g1)"
+        d="M104 92 C 92 132, 70 158, 76 204 C 81 244, 104 270, 126 274 C 104 252, 98 226, 106 198 C 112 176, 128 160, 124 130 C 140 158, 144 184, 136 212 C 160 192, 162 160, 150 134 C 138 112, 116 106, 104 92 Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- 1 -->
+<section class="slide s1" id="s1">
+  <div class="glow" style="top:120px"></div>
+  <svg class="flame" width="190" height="285"><use href="#flame"/></svg>
+  <div class="divider"><span></span><i></i><span></span></div>
+  <h1 class="serif gold-text">Você foi<br>chamada.</h1>
+  <h2 class="serif">E o tempo é <b class="gold-text">AGORA</b>.</h2>
+  <div class="handle">@chamadasparaagora</div>
+</section>
+
+<!-- 2 -->
+<section class="slide s2" id="s2">
+  <div class="page">02</div>
+  <div class="glow" style="top:80px"></div>
+  <div class="eyebrow">Nasce um congresso anual</div>
+  <div class="divider"><span></span><i></i><span></span></div>
+  <div class="title">MULHERES<br>CHAMADAS PARA</div>
+  <div class="agora serif gold-text">AGORA</div>
+  <div class="divider"><span></span><i></i><span></span></div>
+  <p>Um encontro feito para mulheres que decidiram viver, <b style="color:var(--gold-light)">hoje</b>, o propósito para o qual foram criadas.</p>
+  <div class="handle">@chamadasparaagora</div>
+</section>
+
+<!-- 3 -->
+<section class="slide s3" id="s3">
+  <div class="page">03</div>
+  <div class="lead serif gold-text">Um tempo para…</div>
+  <div class="pillar">
+    <div class="word serif gold-text">DESPERTAR</div>
+    <div class="desc">o chamado que existe dentro de você</div>
+  </div>
+  <div class="pillar">
+    <div class="word serif gold-text">RESTAURAR</div>
+    <div class="desc">a fé, a força e a esperança</div>
+  </div>
+  <div class="pillar">
+    <div class="word serif gold-text">ENVIAR</div>
+    <div class="desc">mulheres prontas para viver o agora</div>
+  </div>
+  <div class="handle">@chamadasparaagora</div>
+</section>
+
+<!-- 4 -->
+<section class="slide s4" id="s4">
+  <div class="page">04</div>
+  <div class="glow" style="top:60px"></div>
+  <div class="eyebrow">Prepare o coração</div>
+  <div class="divider"><span></span><i></i><span></span></div>
+  <h1 class="serif gold-text">Em breve</h1>
+  <div class="divider"><span></span><i></i><span></span></div>
+  <div class="list">
+    <div class="item">Data</div>
+    <div class="item">Local</div>
+    <div class="item">Preletoras</div>
+  </div>
+  <div class="note serif">Tudo será revelado por aqui.</div>
+  <div class="handle">@chamadasparaagora</div>
+</section>
+
+<!-- 5 -->
+<section class="slide s5" id="s5">
+  <div class="page">05</div>
+  <svg class="flame" width="110" height="165"><use href="#flame"/></svg>
+  <div class="divider"><span></span><i></i><span></span></div>
+  <h1 class="serif gold-text">Não fique<br>de fora!</h1>
+  <div class="divider"><span></span><i></i><span></span></div>
+  <div class="cta">
+    <div class="row">
+      <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d9b45a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6"/><path d="M19 8v6M16 11h6"/></svg></div>
+      <div>Siga o perfil</div>
+    </div>
+    <div class="row">
+      <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d9b45a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+      <div>Ative as notificações</div>
+    </div>
+    <div class="row">
+      <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d9b45a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg></div>
+      <div>Envie para uma amiga que<br>precisa estar lá com você</div>
+    </div>
+  </div>
+  <div class="at">@chamadasparaagora</div>
+</section>
+
+</body>
+</html>
